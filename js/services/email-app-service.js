@@ -34,9 +34,7 @@ function query(subject,body) {
     if (!emails) {
         emails = makeNewEmails(subject,body);
     } 
-    storageService.save(EMAILS_KEY, emails)
-    console.log('emails before promise',emails);
-    
+    storageService.save(EMAILS_KEY, emails)    
     emailsDB  = emails    
     return Promise.resolve(emailsDB );
 }

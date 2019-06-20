@@ -15,7 +15,7 @@ export default {
         }
     },
     created() {
-        emailsService.query('Important Email!', `just kidding is junk mail!`)
+        emailsService.query('Important Email!', `just kidding it's junk mail!`)
         .then(emails =>{
             this.emails = emails
         })
