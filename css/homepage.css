@@ -1,0 +1,47 @@
+
+/* HOME PAGE CSS */
+
+.homepage-img {
+    width: 100vw;
+    height: 46vh;
+    object-fit: cover;
+}
+
+.email-link-img ,.notes-link-img {
+    height: 150px;
+    padding: 10px;
+}
+
+.link-img-container {
+    cursor: pointer;
+    text-align: center;
+    width: 100vw;
+    margin-bottom: 20px;
+}
+
+.link-img-section {
+    flex-direction: column;
+}
+
+.link-img-container:last-child {
+    background-color: #192b43;
+}
+
+.link-img-container:first-child {
+    background-color:#c1ecfc;
+}
+
+/* MEDIA QUERIES*/
+
+@media (min-width: 650px){
+    
+    /* HOME PAGE CSS - MEDIA QUERIES */
+
+    .link-img-section{
+        flex-direction: row;
+    }
+
+    .link-img-container {
+        width: 50vw;
+    }
+}

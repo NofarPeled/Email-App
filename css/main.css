@@ -1,0 +1,122 @@
+/* IMPORT OTHER PAGES CSS */
+
+@import url('./homepage.css');
+
+/* FONTS */
+
+@font-face {
+    font-family: Aguafina;
+    src: url('../fonts/Aguafina.ttf')
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url('../fonts/Raleway.ttf')
+}
+
+/* BASE */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    text-align: center;
+    font-family: Raleway;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* PAGE CONTENT */ 
+
+.page-content{
+    position: relative;
+    top: 300px;
+}
+
+/* HEADER */
+
+.main-navbar {
+    position: fixed;
+    top: 0px;
+    width:100vw;
+    background-color: #dfdfe0;
+    justify-items: baseline;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.logo {
+    font-family: Aguafina;
+    font-size: 2rem;
+    align-self: center;
+}
+
+.logo::after {
+    content: ' !';
+    color: #61b3e7;
+}
+
+.main-nav {
+    flex-direction: column;
+}
+
+.main-nav > a {
+    height: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
+}
+
+/* FOOTER */
+
+footer {
+    width: 100vw;
+    text-align: center;
+    color: black;
+    position: fixed;
+    bottom: 0;
+    background-color:#dfdfe0;
+}
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.container {
+    padding: 0 20px;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+/* MEDIA QUERIES*/
+
+@media (min-width: 650px){
+
+    /* HEADER */
+    .main-navbar {
+        flex-direction: row;
+    } 
+
+    .main-nav > a {
+        width: 120px;
+        height: 120px;
+    }
+
+    .main-nav {
+        flex-direction: row;
+    }
+
+}
