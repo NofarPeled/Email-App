@@ -26,6 +26,7 @@ body {
     height: 100vh;
     text-align: center;
     font-family: Raleway;
+    background-color: #dfdfe0;
 }
 
 a {
@@ -147,10 +148,10 @@ footer {
         display: flex;
         flex-direction: row;
         background: none;
+        width: 60vw;
     }
 
-    .main-nav > a {
-        width: 120px;
+    .main-nav a {
         height: 120px;
     }
 
