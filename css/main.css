@@ -148,6 +148,7 @@ footer {
         flex-direction: row;
         background: none;
         width: 60vw;
+        height: 120px;
     }
 
     .main-nav a {

@@ -8,9 +8,9 @@ export default {
             <router-link class="link-img-container" to="/emails">
                 <img class="email-link-img" src="img/emails.svg"/>
             </router-link> 
-            <router-link class="link-img-container" to="/">
+            <router-link class="link-img-container" to="/notes">
                 <img class="notes-link-img" src="img/notes.svg"/>
-            </router-link> 
+            </router-link>
         </section>
     </div>            
     `,
