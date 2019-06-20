@@ -1,7 +1,5 @@
 'use strict'
 
-// import Somethind from './location.cmp.js';
-
 export default {
     template: ` 
     <section class="main-navbar flex container space-between">
@@ -13,7 +11,7 @@ export default {
             <router-link class="align-center flex" to="/">Home</router-link> 
             <router-link class="align-center flex" to="/emails">Emails</router-link> 
             <router-link class="align-center flex" to="/notes">Notes</router-link> 
-            <router-link class="align-center flex" to="/">Home 2</router-link> 
+            <router-link class="align-center flex" to="/about">About</router-link> 
         </nav>
 </section>
     `,

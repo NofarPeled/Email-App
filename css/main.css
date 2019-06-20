@@ -32,6 +32,19 @@ a {
     text-decoration: none;
 }
 
+/* CLOSE FOR RENOVETIONS  */
+
+.close-for-renovetion {
+    background-color:#192b43;
+    font-weight: bold;
+    height: 85vh;
+    color: #e6e8fa;
+}
+
+.close-for-renovetion h1 {
+    margin: 0;
+    padding: 20px;
+}
 /* PAGE CONTENT */ 
 
 .page-content{
@@ -149,6 +162,7 @@ footer {
         background: none;
         width: 60vw;
         height: 120px;
+        margin-right: 20px;
     }
 
     .main-nav a {
