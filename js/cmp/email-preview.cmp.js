@@ -6,9 +6,10 @@ export default {
         <div class="prev-email-container">
             <img class="img-email-status" v-if="!email.isRead" src="img/unread.svg"/> 
             <img class="img-email-status" v-else="email.isRead" src="img/read.svg"/>
+            <span class="prev-emails-sender">{{email.sender}}</span>
             <span class="prev-email-subject">{{email.subject}}</span>
-            <span class="prev-mail-content">{{emailContentPrev}}</span>
-            <span class="prev-mail-create-date">{{email.recivedAt}}</span>
+            <span class="prev-email-content">{{emailContentPrev}}</span>
+            <span class="prev-email-create-date">{{email.recivedAt}}</span>
         </div>
     </li>
     `,
@@ -20,7 +21,7 @@ export default {
     },
     created(){
         this.emailContentPrev = this.longEmail()
-        this.isRead = this.email.isRead;
+        this.isRead = this.email.isRead;      
     },
     methods: {
         longEmail(){
