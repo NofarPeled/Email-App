@@ -57,10 +57,21 @@ function createWord(length) {
     return word;
 }
 
-//----------------------------------------------------
+//-----------------------------------------------------
+
+function getDate(){
+    var time = new Date()
+    var month = time.getMonth() + 1; 
+    var day = time.getDate();
+    var year = time.getFullYear();
+    return day + "/" + month + "/" + year;
+}
+
+//-----------------------------------------------------
 
 export const utilService = {
     getRandomInt,
     makeLorem,
-    makeId
+    makeId,
+    getDate
 }

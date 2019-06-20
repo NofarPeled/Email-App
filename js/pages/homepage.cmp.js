@@ -5,23 +5,21 @@ export default {
     <div>
         <img class="homepage-img" src="img/homepage-wallpaper.jpg"/>
         <section class="link-img-section flex">
-            <div class="link-img-container"> 
+            <router-link class="link-img-container" to="/email">
                 <img class="email-link-img" src="img/emails.svg"/>
-            </div>
-            <div class="link-img-container">
+            </router-link> 
+            <router-link class="link-img-container" to="/">
                 <img class="notes-link-img" src="img/notes.svg"/>
-            </div>
+            </router-link> 
         </section>
-    </div>
+    </div>            
     `,
     data() {
         return {
            
         }
     },
-    created() {
-        console.log('homepage was created');
-        
+    created() {       
     },
     methods: {
 

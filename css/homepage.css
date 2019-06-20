@@ -3,7 +3,7 @@
 
 .homepage-img {
     width: 100vw;
-    height: 46vh;
+    height: 50vh;
     object-fit: cover;
 }
 
@@ -16,11 +16,11 @@
     cursor: pointer;
     text-align: center;
     width: 100vw;
-    margin-bottom: 20px;
 }
 
 .link-img-section {
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .link-img-container:last-child {
