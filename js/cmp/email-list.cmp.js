@@ -1,5 +1,5 @@
 'use strict'
-
+ 
 import emailPreview from './email-preview.cmp.js'
 
 export default {
@@ -9,6 +9,7 @@ export default {
             <email-preview 
                 v-for="currEmail in emails" 
                 :email="currEmail" 
+                @click.native ="markAsRead(currEmail.id)"
                 :key="currEmail.id">
             </email-preview>
         </ul>
@@ -18,6 +19,11 @@ export default {
     data() {
         return {
            
+        }
+    },
+    methods:{
+        markAsRead(emailId){
+            this.$emit('readEmail', emailId)
         }
     },
     components: {

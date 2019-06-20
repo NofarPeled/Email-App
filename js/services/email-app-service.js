@@ -5,7 +5,7 @@ import storageService from './storage-service.js'
 
 let emailsDB = [];
 
-const EMAILS_KEY = 'emails'
+export const EMAILS_KEY = 'emails'
 function makeNewEmail(subject,body){
     return {
         id: utilService.makeId(),
@@ -41,7 +41,18 @@ function query(subject,body) {
 
 //-----------------------------------------------------
 
+function findEmailById(emails,emailsId){
+    const email = emails.find(email=>{
+        return email.id === emailsId
+    })
+    return Promise.resolve(email)
+
+}
+
+//-----------------------------------------------------
+
 export default {
     makeNewEmail,
-    query
+    query,
+    findEmailById
 }

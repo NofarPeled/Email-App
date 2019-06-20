@@ -1,6 +1,8 @@
 /* IMPORT OTHER PAGES CSS */
 
 @import url('./homepage.css');
+@import url('./previews-email.css');
+
 
 /* FONTS */
 
@@ -88,10 +90,11 @@ a {
 }
 
 
-.main-nav > a {
+.main-nav > a{
     height: 2.5rem;
     cursor: pointer;
     justify-content: center;
+    flex-flow: 1;
 }
 
 
@@ -168,8 +171,13 @@ footer {
 
     .main-nav a {
         height: 15vh;
+        flex-grow: 1;
+        border-left: 1px solid #192b437e;
     }
 
+    .main-nav:last-child{
+        border-right: 1px solid #192b437e;
+    }
     .open-main-nav-btn {
         display: none;
     }

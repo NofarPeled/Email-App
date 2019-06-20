@@ -1,9 +1,15 @@
 'use strict'
-
+ 
 export default {
     template: ` 
     <li :class="email.id" class="preview-email-li">
-        Subject: <span>{{email.subject}}</span>.....Content: <span >{{emailContentPrev}}</span>...Date: <span>{{email.recivedAt}}</span><br><br>
+        <div class="prev-email-container">
+            <img class="img-email-status" v-if="!email.isRead" src="img/unread.svg"/> 
+            <img class="img-email-status" v-else="email.isRead" src="img/read.svg"/>
+            <span class="prev-email-subject">{{email.subject}}</span>
+            <span class="prev-mail-content">{{emailContentPrev}}</span>
+            <span class="prev-mail-create-date">{{email.recivedAt}}</span>
+        </div>
     </li>
     `,
     props: ['email'],
@@ -14,6 +20,7 @@ export default {
     },
     created(){
         this.emailContentPrev = this.longEmail()
+        this.isRead = this.email.isRead;
     },
     methods: {
         longEmail(){
@@ -23,6 +30,6 @@ export default {
             else {
                 return this.email.body.substring(0,29)
             }
-        }
+        },
     }
 }
