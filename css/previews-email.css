@@ -21,9 +21,6 @@
     font-size: 0.9rem;
 }
 
-.read-email.prev-email-subject {
-    font-weight: normal;
-}
 .img-email-status{
     height: 1.1rem;
 }
@@ -33,6 +30,19 @@
     margin-right: 1rem;
 }
 
+.prev-email-container {
+    flex-direction: column;
+}
+
+/* HELPERS */
+
 .read {
     font-weight: normal;
+}
+
+
+@media (min-width: 650px){
+    .prev-email-container{
+        flex-direction: row;
+    }
 }

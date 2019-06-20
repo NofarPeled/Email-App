@@ -8,12 +8,14 @@ export default {
     template: ` 
     <div>
     <h1> your emails! </h1>
-    <email-list :emails ="emails" @readEmail="readEmail"></email-list>
+    
+    <email-list v-if="!isEmailSelected" :emails ="emails" @readEmail="readEmail"></email-list>
     </div>
     `,
     data() {
         return {
-            emails: []
+            emails: [],
+            isEmailSelected: false,
         }
     },
     created() {
