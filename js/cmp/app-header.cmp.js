@@ -1,13 +1,15 @@
 'use strict'
 
+
 export default {
     template: ` 
     <section class="main-navbar flex container space-between">
         <h2 class="logo">Make Time</h2>
         <img 
-            class="open-main-nav-btn" 
+            class="open-main-nav-btn"
+            @click="toggleNav"
             src="img/menu-icon.svg"/>
-        <nav class="main-nav space-between">  
+        <nav v-if="isMenuOpen" class="main-nav space-between">  
             <router-link class="align-center flex" to="/">Home</router-link> 
             <router-link class="align-center flex" to="/emails">Emails</router-link> 
             <router-link class="align-center flex" to="/notes">Notes</router-link> 
@@ -17,8 +19,11 @@ export default {
     `,
     data(){
         return {
-            isMenuOpen: false,
+            isMenuOpen: false 
         }
     },
-
-}
+    methods: {
+        toggleNav(){
+            this.isMenuOpen = !this.isMenuOpen
+        },
+    }}

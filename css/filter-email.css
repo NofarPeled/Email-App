@@ -1,0 +1,14 @@
+.email-filter {
+    background-color:#61b3e7;
+    height: 4rem;
+    align-items: center;
+}
+
+.email-filter input,select {
+    background-color: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #192b43;
+    border-radius: 7px;
+    padding: 1rem;
+}

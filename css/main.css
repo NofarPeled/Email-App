@@ -2,6 +2,10 @@
 
 @import url('./homepage.css');
 @import url('./previews-email.css');
+@import url('./details-email.css');
+@import url('./email-app.css');
+@import url('./reply-email.css');
+@import url('./filter-email.css');
 
 
 /* FONTS */
@@ -22,11 +26,14 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    text-align: center;
     font-family: Raleway;
 }
 
@@ -38,6 +45,7 @@ a {
 
 .close-for-renovetion {
     background-color:#192b43;
+    text-align: center;
     font-weight: bold;
     height: 85vh;
     color: #e6e8fa;
@@ -89,14 +97,14 @@ a {
 }
 
 
-.main-nav > a{
+.main-nav > a {
     height: 2.5rem;
     cursor: pointer;
     justify-content: center;
     flex-flow: 1;
 }
 
-.main-nav > a:hover{
+.main-nav > a:hover {
     font-weight: bold;
     font-size: 1.5rem;
     background-color: #c9c9ca;

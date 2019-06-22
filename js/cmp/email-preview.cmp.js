@@ -3,8 +3,16 @@
 export default {
     template: ` 
     <li :class="email.id" class="preview-email-li">
-        <section class="prev-email-container flex">
-            <div>            
+        <section class="prev-email-container container flex">
+            <div>
+                <img class="img-favorite" 
+                    src="img/not-favorite.svg"
+                    v-if="!email.isFavorite"
+                    @click="toggleFavorite"/>
+                <img class="img-favorite"
+                    src="img/favorite.svg"
+                    v-if="email.isFavorite"
+                    @click="toggleFavorite"/>      
                 <img class="img-email-status"
                     v-if="!email.isRead" 
                     src="img/unread.svg"/> 
@@ -39,10 +47,14 @@ export default {
                 return this.email.body.substring(0, 29)+'...'
             }
         },
+        toggleFavorite(){
+            this.email.isFavorite = true;
+        }
     },
     computed: {
         isReadEmail() {
             if (this.email.isRead) return 'read'
-        }
+        },
+
     }
 }

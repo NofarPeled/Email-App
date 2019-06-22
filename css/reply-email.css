@@ -1,0 +1,27 @@
+.reply-email{
+    background-color: #e6e8fa;
+}
+
+.reply-email  > *{
+    padding: 1.5rem;
+}
+
+.reply-email textarea,input {
+    width: 100%;
+    margin-top: 0.7rem;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.reply-email textarea {
+    min-height: 20vh;
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+.reply-email input{
+    padding: 1rem; 
+}
