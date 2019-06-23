@@ -15,6 +15,7 @@ function makeNewEmail(subject,body,sender,reciver){
         subject,
         body,
         isRead: false,
+        isRecived: true,
         recivedAt:utilService.getDate(),
         timeCreated: new Date() 
     }

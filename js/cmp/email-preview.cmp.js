@@ -8,20 +8,26 @@ export default {
                 <img class="img-favorite" 
                     src="img/not-favorite.svg"
                     v-if="!email.isFavorite"
-                    @click="toggleFavorite"/>
+                    @click.stop="toggleFavorite"/>
+
                 <img class="img-favorite"
                     src="img/favorite.svg"
                     v-if="email.isFavorite"
-                    @click="toggleFavorite"/>      
+                    @click.stop="toggleFavorite"/>
+
                 <img class="img-email-status"
                     v-if="!email.isRead" 
                     src="img/unread.svg"/> 
+
                 <img class="img-email-status" 
                     v-else="email.isRead" 
                     src="img/read.svg"/>
+
                 <span :class="isReadEmail" class="prev-emails-sender">{{email.sender}}</span>
-                <span :class="isReadEmail" class="prev-email-subject">{{email.subject}}</span></div>
+
+                <span :class="isReadEmail" class="prev-email-subject">{{email.subject}}</span>
             </div>
+            
             <div>
                 <span class="prev-email-content">{{emailContentPrev}}</span>
                 <span class="prev-email-create-date">{{email.recivedAt}}</span>
@@ -32,7 +38,7 @@ export default {
     props: ['email'],
     data() {
         return {
-            emailContentPrev: '',
+            emailContentPrev: ''
         }
     },
     created() {
@@ -48,7 +54,7 @@ export default {
             }
         },
         toggleFavorite(){
-            this.email.isFavorite = true;
+            this.email.isFavorite = !this.email.isFavorite;
         }
     },
     computed: {

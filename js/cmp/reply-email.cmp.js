@@ -1,7 +1,5 @@
 'use strict'
 
-import emailService from '../services/email-app-service.js'
-
 export default {
     template: ` 
     <section class="reply-email">

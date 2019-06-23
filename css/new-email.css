@@ -1,0 +1,53 @@
+.send-email{
+    background-color: #e6e8fa;
+}
+
+.send-email  > *{
+    padding: 1.5rem;
+}
+
+.send-email textarea,input {
+    width: 100%;
+    margin-top: 0.7rem;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1.2rem;
+}
+.send-email textarea {
+    min-height: 20vh;
+}
+
+.send-new-email {
+    background-color:#61b4e7;
+	border-radius:3px;
+	border:1px solid #ffffff;
+    cursor:pointer;
+    color: 	#e6e8fa;
+    font-family: Raleway;
+    font-size: 1.5rem;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #192b43;
+}
+.send-email input{
+    padding: 1rem; 
+}
+
+.new-email-alert {
+    color: red;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.send-email img {
+    height: 30px;
+    width: 30px;
+}
+
+.send-email-back-link{
+    height: 3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: #61b3e7;
+}

@@ -6,11 +6,17 @@ import emailDetails from '../cmp/email-details.cmp.js'
 import newEmail from '../cmp/new-email.cmp.js'
 import storageService from '../services/storage-service.js'
 import filterEmail from '../cmp/filter-email.cmp.js'
+import emailCategories from '../cmp/email-categories.cmp.js'
+import filterService from '../services/email-filter-service.js'
 
 export default {
     template: ` 
     <div class="email-app-cmp">
-    <!-- <new-email @newEmail="addNewEmail"></new-email> -->
+    <new-email 
+        v-if="isNewEmailMode"
+        @closeNewMail="closeNewMail"
+        @addNewEmail="addNewEmail">
+    </new-email>
     <filter-email 
         @set-filter="setFilter"
         v-if="!email"></filter-email>
@@ -19,10 +25,21 @@ export default {
         @closeEmail="closeEmail"
         @deleteEmail="deleteEmail"
         @replyEmail="replyEmail"
-        @unreadEmail="unreadEmail"></email-details>
+        @unreadEmail="unreadEmail">
+    </email-details>
+    <div class="email-categories-list-div flex">
+    <email-categories 
+        :emails="sortCategories"
+        @newEmailMode="newEmailMode"
+        @set-filter="setFilter"
+        v-if="!email">
+    </email-categories>
     <email-list v-if="!email" 
         :emails ="filterEmails" 
-        @readEmail="readEmail"></email-list>
+        class="email-list"
+        @readEmail="readEmail">
+    </email-list>
+    </div>
     </div>
     `,
     data() {
@@ -30,6 +47,14 @@ export default {
             emails: [],
             email: '',
             filter: null,
+            counter: {
+                isRead: [],
+                isUnread: [],
+                isFavorite: [],
+                isSent: [],
+                isRecived: [],
+            },
+            isNewEmailMode: false,
         }
     },
     created() {
@@ -68,17 +93,28 @@ export default {
         },
         addNewEmail(email){
             const newEmail = emailsService.makeNewEmail(email.subject,email.body,email.sender,email.reciver)
+            newEmail.isSent = true;           
             this.emails.unshift(newEmail)
             this.saveEmails
+            this.isNewEmailMode = false;
+            this.filter = null;
         },
         replyEmail(email){
             const replyEmail = emailsService.makeNewEmail(email.subject,email.body,email.sender,email.reciver)
+            replyEmail.isRecived = true;
             this.emails.unshift(replyEmail)
             this.saveEmails
             this.closeEmail('')     
         },
         setFilter(filter) {
             this.filter = filter             
+        },
+        newEmailMode(){
+            this.isNewEmailMode = true;
+        },
+        closeNewMail(){
+            this.isNewEmailMode = false;
+            this.filter = null;
         },
 
     },
@@ -88,46 +124,68 @@ export default {
             emailsService.saveDB(this.emails)  
         },
         filterEmails(){
-            //FILTER EMAILS BY TXT
-            if (!this.filter) return this.emails;
-            let currEmail = this.emails.filter(email => {
-                return (email.subject.includes(this.filter.txt)||
-                email.body.includes(this.filter.txt))
-            })
-            //FILTER EMAILS BY UN/READ
-            if (this.filter.read === '') return currEmail;
-            let filteredEmail = currEmail.filter(email=>{
-                return (email.isRead === this.filter.read)
-            })
+            if (!this.filter) return this.emails
 
-            if (!this.filter.isFavorite) return filteredEmail;
-            let favoriteEmails = filterEmail.filter(email=>{
-                return (email.isFavorite === true)
-            })
-            return favoriteEmails
+            const filterByText = filterService.filterByTxt(this.emails,this.filter);
             
+            const filterByRead = filterService.filterByRead(filterByText,this.filter);
+            const filterByUnread = filterService.filterByUnread(filterByRead,this.filter);
+            const filterByIsFavorite = filterService.filterByIsFavorite(filterByUnread,this.filter);
+            const filterBySend = filterService.filterBySend(filterByIsFavorite,this.filter);
+            const filterByRecived = filterService.filterByRecived(filterBySend,this.filter);
+            return filterByRecived
         },
-                sortByNewreFirst(){
+        sortByNewerFirst(){
             if (!this.filter.created) return this.emails
-            let sortedList = this.emails.sort(function(a, b) { 
+            let sortedList = this.emails.sort((a, b)=> { 
                 return b.timeCreated - a.timeCreated 
             })
             return sortedList
         },
         sortByOlderFirst(){
             if (!this.filter.created) return this.emails
-            let sortedList = this.emails.sort(function(a, b) { 
+            let sortedList = this.emails.sort((a, b)=>{ 
                 return a.timeCreated - b.timeCreated
             })
             return sortedList
-        }
+        },
+        sortCategories(){
+            this.counter = {
+                isRead: 0,
+                isUnread: 0,
+                isFavorite: 0,
+                isSent: 0,
+                isRecived: 0,
+                inbox: 0,
+            },
+            this.emails.map(email =>{
+                this.counter.inbox ++
+                if (email.isRead) {
+                    this.counter.isRead ++
+                }
+                if (!email.isRead) {
+                    this.counter.isUnread ++
+                } 
+                if (email.isFavorite){
+                    this.counter.isFavorite ++
+                }
+                if (email.isSent){
+                    this.counter.isSent ++
+                } else {
+                    this.counter.isRecived ++
+                }
+            })
+            return this.counter
+        },
+
 
     },
     components: {
         emailList,
         emailDetails,
         newEmail,
-        filterEmail
+        filterEmail,
+        emailCategories
     }
 }
 

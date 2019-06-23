@@ -47,5 +47,6 @@
 @media (min-width: 650px){
     .prev-email-container{
         flex-direction: row;
+        margin-left: 25vw;
     }
 }

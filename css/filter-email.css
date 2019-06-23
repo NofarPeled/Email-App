@@ -1,6 +1,6 @@
 .email-filter {
     background-color:#61b3e7;
-    height: 4rem;
+    height: 3rem;
     align-items: center;
 }
 
@@ -10,5 +10,12 @@
     cursor: pointer;
     color: #192b43;
     border-radius: 7px;
-    padding: 1rem;
+    padding: 0.5rem;
+}
+
+.email-filter input::placeholder{
+    color:white;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    font-family: Raleway;
 }

@@ -12,7 +12,7 @@ var app = new Vue({
     <section>
         <app-header></app-header>
         <router-view class="page-content"></router-view>
-        <footer>Coffe Right ©</footer>
+        <footer>Coffe&Tea Rights ©</footer>
     </section>
 
     `,

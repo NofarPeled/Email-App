@@ -4,6 +4,7 @@ import homepage from './pages/homepage.cmp.js'
 import emailApp from './pages/email-app.cmp.js'
 import noteApp from './pages/note-app.cmp.js'
 import about from './pages/about.cmp.js'
+import newEmail from './cmp/new-email.cmp.js'
 
 
 export default [
@@ -11,4 +12,5 @@ export default [
     {path: '/emails', component: emailApp},
     {path: '/notes',component: noteApp},
     {path: '/about',component:about},
+    {path: '/new-email', component: newEmail}
 ]

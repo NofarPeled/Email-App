@@ -8,11 +8,6 @@ export default {
             v-model="filterBy.txt" 
             @input="emitFilter" 
             autofocus placeholder="Search Emails...">
-        <select v-model="filterBy.read" @change="emitFilter">
-            <option value="" selected>All</option>
-            <option :value="true">Read</option>
-            <option :value="false">Unread</option>
-        </select>
         <select v-model="filterBy.created" @change="emitFilter">
             <option value="" selected>Sort By</option>
             <option value="true">Newer</option>
@@ -25,7 +20,6 @@ export default {
         return {
             filterBy: {
                 txt: '',
-                read: '',
                 created: true,
             },
         }

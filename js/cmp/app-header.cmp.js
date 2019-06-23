@@ -9,7 +9,7 @@ export default {
             class="open-main-nav-btn"
             @click="toggleNav"
             src="img/menu-icon.svg"/>
-        <nav v-if="isMenuOpen" class="main-nav space-between">  
+        <nav class="main-nav space-between">  
             <router-link class="align-center flex" to="/">Home</router-link> 
             <router-link class="align-center flex" to="/emails">Emails</router-link> 
             <router-link class="align-center flex" to="/notes">Notes</router-link> 
@@ -19,11 +19,19 @@ export default {
     `,
     data(){
         return {
-            isMenuOpen: false 
+            // isMenuOpen: true,
         }
     },
     methods: {
         toggleNav(){
-            this.isMenuOpen = !this.isMenuOpen
+            // if(this.isMenuOpen){
+            //     document.querySelector('.main-nav').style.display = 'none'
+            //     this.isMenuOpen = false;
+            // }
+            // else {
+            //     this.isMenuOpen = true
+            //     document.querySelector('.main-nav').style.display = 'flex'
+
+            // }
         },
     }}
