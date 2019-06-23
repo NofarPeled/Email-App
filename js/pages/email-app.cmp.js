@@ -25,7 +25,8 @@ export default {
         @closeEmail="closeEmail"
         @deleteEmail="deleteEmail"
         @replyEmail="replyEmail"
-        @unreadEmail="unreadEmail">
+        @unreadEmail="unreadEmail"
+        @markAsFavorite="markAsFavorite">
     </email-details>
     <div class="email-categories-list-div flex">
     <email-categories 
@@ -116,6 +117,10 @@ export default {
             this.isNewEmailMode = false;
             this.filter = null;
         },
+        markAsFavorite(){
+            this.email.isFavorite = !this.email.isFavorite
+            this.saveEmails
+        }
 
     },
     computed: {
@@ -124,16 +129,17 @@ export default {
             emailsService.saveDB(this.emails)  
         },
         filterEmails(){
-            if (!this.filter) return this.emails
+           return filterService.filterEmails(this.emails,this.filter)
+            // if (!this.filter) return this.emails
 
-            const filterByText = filterService.filterByTxt(this.emails,this.filter);
-            
-            const filterByRead = filterService.filterByRead(filterByText,this.filter);
-            const filterByUnread = filterService.filterByUnread(filterByRead,this.filter);
-            const filterByIsFavorite = filterService.filterByIsFavorite(filterByUnread,this.filter);
-            const filterBySend = filterService.filterBySend(filterByIsFavorite,this.filter);
-            const filterByRecived = filterService.filterByRecived(filterBySend,this.filter);
-            return filterByRecived
+            // const filterByText = filterService.filterByTxt(this.emails,this.filter);
+
+            // const filterByRead = filterService.filterByRead(filterByText,this.filter);
+            // const filterByUnread = filterService.filterByUnread(filterByRead,this.filter);
+            // const filterByIsFavorite = filterService.filterByIsFavorite(filterByUnread,this.filter);
+            // const filterBySend = filterService.filterBySend(filterByIsFavorite,this.filter);
+            // const filterByRecived = filterService.filterByRecived(filterBySend,this.filter);
+            // return filterByRecived
         },
         sortByNewerFirst(){
             if (!this.filter.created) return this.emails

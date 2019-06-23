@@ -11,6 +11,14 @@ export default {
                 @click="closeEmail"
                 src="img/back.svg"/>
             <div>
+                <img v-if="email.isFavorite" 
+                    class="email-details-icons" 
+                    @click="markAsFavorite"
+                    src="img/favorite.svg"/>
+                <img v-if="!email.isFavorite" 
+                    class="email-details-icons" 
+                    @click="markAsFavorite"
+                    src="img/not-favorite.svg"/>
                 <img class="email-details-icons" 
                     href="#email-reply"
                     @click="toggleReply"
@@ -21,7 +29,6 @@ export default {
                 <img class="email-details-icons" 
                     @click="confirmDelete(email.id)"
                     src="img/bin.svg"/>
-                <img class="email-details-icons" src="img/dots.svg"/>
             </div>
         </section>
         <reply-email id="email-reply" 
@@ -62,9 +69,12 @@ export default {
         toggleReply(){
             this.isReplyMode = !this.isReplyMode;
         },
-        replyEmail(email){
-            this.$emit('replyEmail',email)
+        replyEmail(emailId){
+            this.$emit('replyEmail',emailId)
         },
+        markAsFavorite(){
+            this.$emit('markAsFavorite','')
+        }
     },
     components: {
         replyEmail

@@ -17,10 +17,12 @@ export default {
 
                 <img class="img-email-status"
                     v-if="!email.isRead" 
+                    @click.stop="toggleEmailStatus"
                     src="img/unread.svg"/> 
 
                 <img class="img-email-status" 
                     v-else="email.isRead" 
+                    @click.stop="toggleEmailStatus"
                     src="img/read.svg"/>
 
                 <span :class="isReadEmail" class="prev-emails-sender">{{email.sender}}</span>
@@ -46,15 +48,18 @@ export default {
     },
     methods: {
         longEmail() {
-            if (this.email.body.length < 30) {               
+            if (this.email.body.length < 30) {
                 return this.email.body;
             }
             else {
-                return this.email.body.substring(0, 29)+'...'
+                return this.email.body.substring(0, 29) + '...'
             }
         },
-        toggleFavorite(){
+        toggleFavorite() {
             this.email.isFavorite = !this.email.isFavorite;
+        },
+        toggleEmailStatus(){
+            this.email.isRead = !this.email.isRead;
         }
     },
     computed: {

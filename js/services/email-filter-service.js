@@ -1,5 +1,21 @@
 'use strict'
 
+function filterEmails(emails,filter){
+    if (!filter) return emails
+    let filteredByTxt = (!filter.txt) ? emails : filterByTxt(emails,filter)
+
+    let filteredEmails;
+    if (filter.inbox) filteredEmails = filteredByTxt
+    if (filter.isRead) filteredEmails = filterByRead(filteredByTxt)
+    if (filter.isUnread) filteredEmails = filterByUnread(filteredByTxt)
+    if (filter.isFavorite) filteredEmails = filterByIsFavorite(filteredByTxt)
+    if (filter.isRecived) filteredEmails = filterByRecived(filteredByTxt)
+    if (filter.isSent) filteredEmails = filterBySend(filteredByTxt)
+
+
+    return filteredEmails
+
+}
 
 function filterByTxt(emails,filter){
     if (!filter.txt) return emails;
@@ -10,36 +26,32 @@ function filterByTxt(emails,filter){
     
     return filteredByTxt
 }
-function filterByRead(emails,filter){
-    if(!filter.isRead) return emails
+
+function filterByRead(emails){
     let filterByRead = emails.filter(email=>{
         return email.isRead
     })
     return filterByRead
 }
-function filterByUnread(emails,filter){
-    if (!filter.isUnread) return emails;
+function filterByUnread(emails){
     let filterByUnread = emails.filter(email=>{
         return (!email.isRead)
     })
     return filterByUnread
 }
-function filterByIsFavorite(emails,filter){
-    if(!filter.isFavorite) return emails;
+function filterByIsFavorite(emails){
     let filterByIsFavorite = emails.filter(email=>{
         return email.isFavorite 
     })
     return filterByIsFavorite;
 }
-function filterBySend(emails,filter){
-    if(!filter.isSent) return emails;
+function filterBySend(emails){
     let filterBySend = emails.filter(email=>{
         return email.isSent
     })
     return filterBySend
 }
-function filterByRecived(emails,filter){
-    if (!filter.isRecived) return emails
+function filterByRecived(emails){
     let filterByRecived = emails.filter(email=>{
         return email.isRecived
     }) 
@@ -47,10 +59,5 @@ function filterByRecived(emails,filter){
 }
 
 export default {
-    filterByTxt,
-    filterByRead,
-    filterByUnread,
-    filterByIsFavorite,
-    filterBySend,
-    filterByRecived
+    filterEmails
 }

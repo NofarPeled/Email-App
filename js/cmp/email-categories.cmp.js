@@ -54,8 +54,9 @@ export default {
             
         },
         clearFilter(){
-            this.filterBy = {}
+            this.filterBy.inbox = true;
             this.emitFilter()
+            this.filterBy = {}
         },
         emitFilter() {
             this.$emit('set-filter', this.filterBy);
