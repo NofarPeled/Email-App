@@ -130,16 +130,6 @@ export default {
         },
         filterEmails(){
            return filterService.filterEmails(this.emails,this.filter)
-            // if (!this.filter) return this.emails
-
-            // const filterByText = filterService.filterByTxt(this.emails,this.filter);
-
-            // const filterByRead = filterService.filterByRead(filterByText,this.filter);
-            // const filterByUnread = filterService.filterByUnread(filterByRead,this.filter);
-            // const filterByIsFavorite = filterService.filterByIsFavorite(filterByUnread,this.filter);
-            // const filterBySend = filterService.filterBySend(filterByIsFavorite,this.filter);
-            // const filterByRecived = filterService.filterByRecived(filterBySend,this.filter);
-            // return filterByRecived
         },
         sortByNewerFirst(){
             if (!this.filter.created) return this.emails
