@@ -1,75 +1,57 @@
 'use strict'
 
-function filterEmails(emails,filter){
-    console.log(filter,'filter!');
-
-    if (!filter) return emails
-    const filteredByTxt = (!filter.txt) ? emails : filterByTxt(emails,filter.txt)
-    console.log(filteredByTxt);
-    
-
-
+function filterEmails(emails, filter) {
+    console.log('got in filterEmails', filter);
+    debugger;
+    if (!filter.txt && !filter.type) return emails
+    const filteredByTxt = (!filter.txt) ? emails : filterByTxt(emails, filter.txt)
     let filteredEmails = null
-    if (filter.isRead) filteredEmails = filterByRead(filteredByTxt)
-    else if (filter.isUnread) filteredEmails = filterByUnread(filteredByTxt)
-    else if (filter.isFavorite) filteredEmails = filterByIsFavorite(filteredByTxt)
-    else if (filter.isRecived) filteredEmails = filterByRecived(filteredByTxt)
-    else if (filter.isSent) filteredEmails = filterBySend(filteredByTxt)
+    if (filter.type.isRead) filteredEmails = filterByRead(filteredByTxt)
+    else if (filter.type.isUnread) filteredEmails = filterByUnread(filteredByTxt)
+    else if (filter.type.isFavorite) filteredEmails = filterByIsFavorite(filteredByTxt)
+    else if (filter.type.isRecived) filteredEmails = filterByRecived(filteredByTxt)
+    else if (filter.type.isSent) filteredEmails = filterBySend(filteredByTxt)
     else filteredEmails = filteredByTxt;
-    console.log(filteredEmails,'filteredEmails');
-    
     return filteredEmails
-
 }
 
-function filterByTxt(emails,txt){
-
+function filterByTxt(emails, txt) {
     const filteredByTxt = emails.filter(email => {
-        return email.subject.includes(txt)||
-        email.body.includes(txt)
+        return email.subject.includes(txt) ||
+            email.body.includes(txt)
     })
-    
+
     return filteredByTxt
 }
 
-function filterByRead(emails){
-    console.log('in filterByRead', emails);
-    
-    const filterByRead = emails.filter(email=>{
+function filterByRead(emails) {
+    const filterByRead = emails.filter(email => {
         return email.isRead
     })
     return filterByRead
 }
-function filterByUnread(emails){
-    console.log('filterByUnread',emails);
-    
-    const filterByUnread = emails.filter(email=>{
+function filterByUnread(emails) {
+    const filterByUnread = emails.filter(email => {
         return (!email.isRead)
     })
     return filterByUnread
 }
-function filterByIsFavorite(emails){
-    console.log('filterByIsFavorite',emails);
-    
-    const filterByIsFavorite = emails.filter(email=>{
-        return email.isFavorite 
+function filterByIsFavorite(emails) {
+    const filterByIsFavorite = emails.filter(email => {
+        return email.isFavorite
     })
     return filterByIsFavorite;
 }
-function filterBySend(emails){
-    console.log('filterBySend',emails);
-    
-    const filterBySend = emails.filter(email=>{
+function filterBySend(emails) {
+    const filterBySend = emails.filter(email => {
         return email.isSent
     })
     return filterBySend
 }
-function filterByRecived(emails){
-    console.log('in filterByRecived', emails);
-    
-    const filterByRecived = emails.filter(email=>{
+function filterByRecived(emails) {
+    const filterByRecived = emails.filter(email => {
         return email.isRecived
-    }) 
+    })
     return filterByRecived
 }
 

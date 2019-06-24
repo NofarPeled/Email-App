@@ -8,6 +8,7 @@ import storageService from '../services/storage-service.js'
 import filterEmail from '../cmp/filter-email.cmp.js'
 import emailCategories from '../cmp/email-categories.cmp.js'
 import filterService from '../services/email-filter-service.js'
+import eventBus from '../event-bus.js';
 
 export default {
     template: ` 
@@ -30,13 +31,13 @@ export default {
     </email-details>
     <div class="email-categories-list-div flex">
     <email-categories 
-        :emails="sortCategories"
+        :counter="sortCategories"
         @newEmailMode="newEmailMode"
         @set-filter="setFilter"
         v-if="!email">
     </email-categories>
     <email-list v-if="!email" 
-        :emails ="filterEmails" 
+        :emails="filterEmails" 
         class="email-list"
         @readEmail="readEmail">
     </email-list>
@@ -47,7 +48,7 @@ export default {
         return {
             emails: [],
             email: '',
-            filter: null,
+            filter: {txt: '', type: null},
             counter: {
                 isRead: [],
                 isUnread: [],
@@ -59,10 +60,14 @@ export default {
         }
     },
     created() {
-        emailsService.query('Important Email!', `just kidding it's junk mail!`, 'Someone Don\'t Know','You')
+        emailsService.query('Important Email!', `just kidding it's junk mail!`, 'Someone Don\'t Know', 'You')
             .then(emails => {
                 this.emails = emails
             })
+        eventBus.$on('set-filter', info => {
+            console.log(info,'infp!');
+            this.setFilter(info)
+        })
     },
     methods: {
         readEmail(id) {
@@ -73,10 +78,10 @@ export default {
                     this.saveEmails
                 })
         },
-        closeEmail(email){
+        closeEmail(email) {
             this.email = email;
         },
-        deleteEmail(emailId){
+        deleteEmail(emailId) {
             emailsService.findEmailById(emailId)
                 .then(email => {
                     this.emails.splice(email, 1);
@@ -84,7 +89,7 @@ export default {
                     this.closeEmail('')
                 })
         },
-        unreadEmail(emailId){
+        unreadEmail(emailId) {
             emailsService.findEmailById(emailId)
                 .then(email => {
                     email.isRead = false;
@@ -92,60 +97,72 @@ export default {
                     this.closeEmail('')
                 })
         },
-        addNewEmail(email){
-            const newEmail = emailsService.makeNewEmail(email.subject,email.body,email.sender,email.reciver)
-            newEmail.isSent = true;           
+        addNewEmail(email) {
+            const newEmail = emailsService.makeNewEmail(email.subject, email.body, email.sender, email.reciver)
+            newEmail.isSent = true;
             this.emails.unshift(newEmail)
             this.saveEmails
             this.isNewEmailMode = false;
-            this.filter = null;
+            this.filter = {txt: '', type: null};
         },
-        replyEmail(email){
-            const replyEmail = emailsService.makeNewEmail(email.subject,email.body,email.sender,email.reciver)
+        replyEmail(email) {
+            const replyEmail = emailsService.makeNewEmail(email.subject, email.body, email.sender, email.reciver)
             replyEmail.isRecived = true;
             this.emails.unshift(replyEmail)
             this.saveEmails
-            this.closeEmail('')     
+            this.closeEmail('')
         },
-        setFilter(filter) {
-            this.filter = filter             
+        setFilter(filter){
+            console.log(filter ,'filter!');
+            console.log(typeof(filter),'filter type of');
+            
+            if (typeof(filter)==='string') {
+                console.log('filter type is string!');
+                
+                this.filter.txt = filter
+            } 
+            if (typeof(filter) === 'object') {
+                console.log(',object,');
+                
+                this.filter.type = filter
+            }
         },
-        newEmailMode(){
+        newEmailMode() {
             this.isNewEmailMode = true;
         },
-        closeNewMail(){
+        closeNewMail() {
             this.isNewEmailMode = false;
-            this.filter = null;
+            this.filter = {txt: '', type: null}
         },
-        markAsFavorite(){
+        markAsFavorite() {
             this.email.isFavorite = !this.email.isFavorite
             this.saveEmails
         }
 
     },
     computed: {
-        saveEmails(){
+        filterEmails() {
+            return filterService.filterEmails(this.emails, this.filter)
+        },
+        saveEmails() {
             storageService.save(EMAILS_KEY, this.emails);
-            emailsService.saveDB(this.emails)  
+            emailsService.saveDB(this.emails)
         },
-        filterEmails(){
-           return filterService.filterEmails(this.emails,this.filter)
-        },
-        sortByNewerFirst(){
+        sortByNewerFirst() {
             if (!this.filter.created) return this.emails
-            let sortedList = this.emails.sort((a, b)=> { 
-                return b.timeCreated - a.timeCreated 
+            let sortedList = this.emails.sort((a, b) => {
+                return b.timeCreated - a.timeCreated
             })
             return sortedList
         },
-        sortByOlderFirst(){
+        sortByOlderFirst() {
             if (!this.filter.created) return this.emails
-            let sortedList = this.emails.sort((a, b)=>{ 
+            let sortedList = this.emails.sort((a, b) => {
                 return a.timeCreated - b.timeCreated
             })
             return sortedList
         },
-        sortCategories(){
+        sortCategories() {
             this.counter = {
                 isRead: 0,
                 isUnread: 0,
@@ -154,23 +171,14 @@ export default {
                 isRecived: 0,
                 inbox: 0,
             },
-            this.emails.map(email =>{
-                this.counter.inbox ++
-                if (email.isRead) {
-                    this.counter.isRead ++
-                }
-                if (!email.isRead) {
-                    this.counter.isUnread ++
-                } 
-                if (email.isFavorite){
-                    this.counter.isFavorite ++
-                }
-                if (email.isSent){
-                    this.counter.isSent ++
-                } else {
-                    this.counter.isRecived ++
-                }
-            })
+                this.emails.map(email => {
+                    this.counter.inbox++
+                    if (email.isRead) this.counter.isRead++
+                    if (!email.isRead) this.counter.isUnread++
+                    if (email.isFavorite) this.counter.isFavorite++
+                    if (email.isSent) this.counter.isSent++
+                    else this.counter.isRecived++
+                })
             return this.counter
         },
 

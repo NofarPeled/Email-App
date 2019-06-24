@@ -1,4 +1,5 @@
 'use strict'
+import eventBus from '../event-bus.js';
 
 export default {
     template: `
@@ -8,11 +9,11 @@ export default {
             v-model="filterBy.txt" 
             @input="emitFilter" 
             autofocus placeholder="Search Emails...">
-        <select v-model="filterBy.created" @change="emitFilter">
+        <!-- <select v-model="filterBy.created" @change="emitFilter">
             <option value="" selected>Sort By</option>
             <option value="true">Newer</option>
             <option value="false">Older</option>
-        </select>
+        </select> -->
         </div>
     </section>
     `,
@@ -20,13 +21,12 @@ export default {
         return {
             filterBy: {
                 txt: '',
-                created: true,
             },
         }
     },
     methods: {
         emitFilter() {
-            this.$emit('set-filter', this.filterBy);
+            eventBus.$emit('set-filter', this.filterBy);            
         },
     },
     computed: {

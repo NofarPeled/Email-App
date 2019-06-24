@@ -1,65 +1,116 @@
 'use strict'
+import eventBus from '../event-bus.js';
 
 export default {
     template: ` 
-
     <ul class="categories-list flex">
-        
         <li @click="openNewEmail">New Email</li>
-        <li @click="filterInbox">Inbox ({{emails.inbox}})</li>
-        <li @click="filterBySent">Sent ({{emails.isSent}})</li>
-        <li @click="filterByRecived">Recived ({{emails.isRecived}})</li>
-        <li @click="filterByIsFavorite">Favorites ({{emails.isFavorite}})</li>
-        <li @click="filterByIsRead">Read ({{emails.isRead}})</li>
-        <li @click="filterByUnread">UnRead ({{emails.isUnread}})</li>
+        <li @click="filterInbox">Inbox ({{counter.inbox}})</li>
+        <li @click="filterBySent">Sent ({{counter.isSent}})</li>
+        <li @click="filterByRecived">Recived ({{counter.isRecived}})</li>
+        <li @click="filterByIsFavorite">Favorites ({{counter.isFavorite}})</li>
+        <li @click="filterByIsRead">Read ({{counter.isRead}})</li>
+        <li @click="filterByUnread">UnRead ({{counter.isUnread}})</li>
     </ul>
     `,
-    props: ['emails'],
+    props: ['counter'],
     data() {
         return {
             filterBy: {
+                type: {
+                    inbox: false,
+                    isUnread: false,
+                    isRead: false,
+                    isFavorite: false,
+                    isRecived: false,
+                    isSent: false,
+                }
             },
         }
     },
-    created(){
+    created() {
     },
-    methods:{
-        openNewEmail(){
-            this.$emit('newEmailMode','')
+    methods: {
+        openNewEmail() {
+            this.$emit('newEmailMode', '')
         },
-        filterBySent(){
-            this.filterBy.isSent = true;
+        filterBySent() {
+            this.filterBy.type.isSent = true;
             this.emitFilter()
-            this.filterBy = {}
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
         },
-        filterByRecived(){
-            this.filterBy.isRecived = true;
+        filterByRecived() {
+            this.filterBy.type.isRecived = true;
             this.emitFilter()
-            this.filterBy = {}
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
         },
-        filterByIsFavorite(){
-            this.filterBy.isFavorite = true;
+        filterByIsFavorite() {
+            this.filterBy.type.isFavorite = true;
             this.emitFilter()
-            this.filterBy = {}
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
         },
-        filterByIsRead(){
-            this.filterBy.isRead = true;
+        filterByIsRead() {
+            this.filterBy.type.isRead = true;
             this.emitFilter()
-            this.filterBy = {}
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
         },
-        filterByUnread(){
-            this.filterBy.isUnread = true;
+        filterByUnread() {
+            this.filterBy.type.isUnread = true;
             this.emitFilter()
-            this.filterBy = {}
-            
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
+
         },
-        filterInbox(){
-            this.filterBy.inbox = true;
+        filterInbox() {
+            this.filterBy.type.inbox = true;
             this.emitFilter()
-            this.filterBy = {}
+            this.filterBy.type = {
+                inbox: false,
+                isUnread: false,
+                isRead: false,
+                isFavorite: false,
+                isRecived: false,
+                isSent: false,
+            }
         },
         emitFilter() {
-            this.$emit('set-filter', this.filterBy);
+            eventBus.$emit('set-filter', this.filterBy.type);
+            console.log(this.filterBy.type,'filter by');
+            
         },
     },
 }

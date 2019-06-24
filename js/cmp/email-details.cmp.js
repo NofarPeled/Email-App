@@ -48,32 +48,32 @@ export default {
 
     `,
     props: ['email'],
-    data(){
-        return{
+    data() {
+        return {
             isReplyMode: false,
         }
     },
     methods: {
-        closeEmail(){
-            this.$emit('closeEmail','')
+        closeEmail() {
+            this.$emit('closeEmail', '')
         },
-        confirmDelete(emailId){
+        confirmDelete(emailId) {
             const deleteAprroved = confirm('Are You Sure You To Delete This Message?');
             if (deleteAprroved) {
                 this.$emit('deleteEmail', emailId)
-            } 
+            }
         },
         unreadEmail(emailId) {
-            this.$emit('unreadEmail',emailId)
+            this.$emit('unreadEmail', emailId)
         },
-        toggleReply(){
+        toggleReply() {
             this.isReplyMode = !this.isReplyMode;
         },
-        replyEmail(emailId){
-            this.$emit('replyEmail',emailId)
+        replyEmail(emailId) {
+            this.$emit('replyEmail', emailId)
         },
-        markAsFavorite(){
-            this.$emit('markAsFavorite','')
+        markAsFavorite() {
+            this.$emit('markAsFavorite', '')
         }
     },
     components: {
