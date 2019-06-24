@@ -4,9 +4,11 @@ import emailPreview from './email-preview.cmp.js'
 
 export default {
     template: ` 
-    <section>
+    <section class="emails-list-section">
         <ul class="emails-list clean-list">
             <email-preview 
+                @togle-favorite="toggleFavorite"
+                @toggle-read="toggleRead"
                 v-for="currEmail in emails" 
                 :email="currEmail" 
                 @click.native ="markAsRead(currEmail.id)"
@@ -24,6 +26,12 @@ export default {
     methods:{
         markAsRead(emailId){
             this.$emit('readEmail', emailId)
+        },
+        toggleRead(emailId){
+            this.$emit('toggle-read',emailId)
+        },
+        toggleFavorite(emailId){
+            this.$emit('toggle-favorite', emailId)
         }
     },
     components: {

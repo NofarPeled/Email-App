@@ -1,0 +1,17 @@
+.preview-email-li{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-top: 0;
+}
+
+.preview-email-li:hover {
+    background-color: #95d3fa;
+    color: #192b43;
+    font-weight: bold;
+}
+@media (min-width: 650px) {
+    .email-filter{
+        width: 100%;
+    }
+}

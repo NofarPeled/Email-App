@@ -8,6 +8,7 @@
 @import url('./filter-email.css');
 @import url('./new-email.css');
 @import url('./email-categories.css');
+@import url('./email-list.css');
 /* FONTS */
 
 @font-face {
@@ -122,7 +123,7 @@ a {
 
 footer {
     width: 100vw;
-    height: 5vh; 
+    height: 4vh; 
     text-align: center;
     color: black;
     position: fixed;

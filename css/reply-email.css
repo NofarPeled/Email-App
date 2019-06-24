@@ -6,6 +6,19 @@
     padding: 1.5rem;
 }
 
+.reply-btn {
+	box-shadow:inset 0px -3px 7px 0px #29bbff;
+	background-color:#2dabf9;
+	border-radius:3px;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:1.1rem;
+	padding:0.5rem 1.3rem;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+
+
 .reply-email textarea,input {
     width: 100%;
     margin-top: 0.7rem;

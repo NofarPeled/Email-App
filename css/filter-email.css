@@ -2,6 +2,7 @@
     background-color:#61b3e7;
     height: 3rem;
     align-items: center;
+    width: 100vw;
 }
 
 .email-filter input,select {
@@ -18,4 +19,13 @@
     font-size: 1.5rem;
     font-weight: lighter;
     font-family: Raleway;
+}
+
+@media (min-width: 650px) {
+    .email-filter {
+        position: relative;
+        left: 120px;
+        width: calc(100vw-120px);
+    }
+        
 }

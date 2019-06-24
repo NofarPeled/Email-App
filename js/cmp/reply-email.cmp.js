@@ -9,7 +9,7 @@ export default {
         <div>
         Your Message: <br>
         <textarea type="text" v-model="replyEmail.body" placeholder="Enter your message..."></textarea><br>
-        <button @click="sendEmail">Send</button>
+        <button class="reply-btn" @click="sendEmail">Send</button>
         </div>
     </section>
     `,

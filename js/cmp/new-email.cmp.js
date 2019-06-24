@@ -28,9 +28,7 @@ export default {
                 this.$emit('addNewEmail',this.newEmail)             
             } 
             else {
-
-                document.querySelector('.send-email').scrollIntoView()
-
+                document.querySelector('body').scrollIntoView();
                 this.alert = 'Wrong Email, Check Again Before Sending!'
             }
         },

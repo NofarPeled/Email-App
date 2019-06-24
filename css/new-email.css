@@ -13,6 +13,7 @@
     border: none;
     font-size: 1.2rem;
 }
+
 .send-email textarea {
     min-height: 20vh;
 }

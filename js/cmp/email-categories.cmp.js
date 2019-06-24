@@ -4,13 +4,13 @@ import eventBus from '../event-bus.js';
 export default {
     template: ` 
     <ul class="categories-list flex">
-        <li @click="openNewEmail">New Email</li>
-        <li @click="filterInbox">Inbox ({{counter.inbox}})</li>
-        <li @click="filterBySent">Sent ({{counter.isSent}})</li>
-        <li @click="filterByRecived">Recived ({{counter.isRecived}})</li>
-        <li @click="filterByIsFavorite">Favorites ({{counter.isFavorite}})</li>
-        <li @click="filterByIsRead">Read ({{counter.isRead}})</li>
-        <li @click="filterByUnread">UnRead ({{counter.isUnread}})</li>
+        <li class="new-email-btn" @click="openNewEmail">New Email</li>
+        <li class="email-category"  @click="filterInbox">Inbox ({{counter.inbox}})</li>
+        <li class="email-category" @click="filterBySent">Sent ({{counter.isSent}})</li>
+        <li class="email-category" @click="filterByRecived">Recived ({{counter.isRecived}})</li>
+        <li class="email-category" @click="filterByIsFavorite">Favorites ({{counter.isFavorite}})</li>
+        <li class="email-category" @click="filterByIsRead">Read ({{counter.isRead}})</li>
+        <li class="email-category" @click="filterByUnread">UnRead ({{counter.isUnread}})</li>
     </ul>
     `,
     props: ['counter'],
@@ -28,10 +28,9 @@ export default {
             },
         }
     },
-    created() {
-    },
     methods: {
         openNewEmail() {
+            document.querySelector('body').scrollIntoView();
             this.$emit('newEmailMode', '')
         },
         filterBySent() {
@@ -108,9 +107,7 @@ export default {
             }
         },
         emitFilter() {
-            eventBus.$emit('set-filter', this.filterBy.type);
-            console.log(this.filterBy.type,'filter by');
-            
+            eventBus.$emit('set-filter', this.filterBy.type);            
         },
     },
 }
