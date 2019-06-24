@@ -6,7 +6,7 @@ export default {
     <ul class="categories-list flex">
         
         <li @click="openNewEmail">New Email</li>
-        <li @click="clearFilter">Inbox ({{emails.inbox}})</li>
+        <li @click="filterInbox">Inbox ({{emails.inbox}})</li>
         <li @click="filterBySent">Sent ({{emails.isSent}})</li>
         <li @click="filterByRecived">Recived ({{emails.isRecived}})</li>
         <li @click="filterByIsFavorite">Favorites ({{emails.isFavorite}})</li>
@@ -53,7 +53,7 @@ export default {
             this.filterBy = {}
             
         },
-        clearFilter(){
+        filterInbox(){
             this.filterBy.inbox = true;
             this.emitFilter()
             this.filterBy = {}

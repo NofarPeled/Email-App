@@ -1,58 +1,73 @@
 'use strict'
 
 function filterEmails(emails,filter){
+    console.log(filter,'filter!');
+
     if (!filter) return emails
-    let filteredByTxt = (!filter.txt) ? emails : filterByTxt(emails,filter)
+    const filteredByTxt = (!filter.txt) ? emails : filterByTxt(emails,filter.txt)
+    console.log(filteredByTxt);
+    
 
-    let filteredEmails;
-    if (filter.inbox) filteredEmails = filteredByTxt
+
+    let filteredEmails = null
     if (filter.isRead) filteredEmails = filterByRead(filteredByTxt)
-    if (filter.isUnread) filteredEmails = filterByUnread(filteredByTxt)
-    if (filter.isFavorite) filteredEmails = filterByIsFavorite(filteredByTxt)
-    if (filter.isRecived) filteredEmails = filterByRecived(filteredByTxt)
-    if (filter.isSent) filteredEmails = filterBySend(filteredByTxt)
-
-
+    else if (filter.isUnread) filteredEmails = filterByUnread(filteredByTxt)
+    else if (filter.isFavorite) filteredEmails = filterByIsFavorite(filteredByTxt)
+    else if (filter.isRecived) filteredEmails = filterByRecived(filteredByTxt)
+    else if (filter.isSent) filteredEmails = filterBySend(filteredByTxt)
+    else filteredEmails = filteredByTxt;
+    console.log(filteredEmails,'filteredEmails');
+    
     return filteredEmails
 
 }
 
-function filterByTxt(emails,filter){
-    if (!filter.txt) return emails;
-    let filteredByTxt = emails.filter(email => {
-        return (email.subject.includes(filter.txt)||
-        email.body.includes(filter.txt))
+function filterByTxt(emails,txt){
+
+    const filteredByTxt = emails.filter(email => {
+        return email.subject.includes(txt)||
+        email.body.includes(txt)
     })
     
     return filteredByTxt
 }
 
 function filterByRead(emails){
-    let filterByRead = emails.filter(email=>{
+    console.log('in filterByRead', emails);
+    
+    const filterByRead = emails.filter(email=>{
         return email.isRead
     })
     return filterByRead
 }
 function filterByUnread(emails){
-    let filterByUnread = emails.filter(email=>{
+    console.log('filterByUnread',emails);
+    
+    const filterByUnread = emails.filter(email=>{
         return (!email.isRead)
     })
     return filterByUnread
 }
 function filterByIsFavorite(emails){
-    let filterByIsFavorite = emails.filter(email=>{
+    console.log('filterByIsFavorite',emails);
+    
+    const filterByIsFavorite = emails.filter(email=>{
         return email.isFavorite 
     })
     return filterByIsFavorite;
 }
 function filterBySend(emails){
-    let filterBySend = emails.filter(email=>{
+    console.log('filterBySend',emails);
+    
+    const filterBySend = emails.filter(email=>{
         return email.isSent
     })
     return filterBySend
 }
 function filterByRecived(emails){
-    let filterByRecived = emails.filter(email=>{
+    console.log('in filterByRecived', emails);
+    
+    const filterByRecived = emails.filter(email=>{
         return email.isRecived
     }) 
     return filterByRecived
