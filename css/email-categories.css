@@ -1,11 +1,12 @@
 .categories-list{
     flex-direction: row;
     width: 100vw;
+    height: 50spx;
     margin: 0;
     padding: 0.5rem 1.5rem;
     flex-wrap: wrap;    
     list-style-type: none;
-    top: 15vh;
+    top: 14vh;
     background-color: #e6e8fa;
 }
 
