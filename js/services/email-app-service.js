@@ -37,7 +37,7 @@ function makeNewEmail(subject,body,sender,reciver){
 
 function makeNewEmails(){
     var emails = []
-    var email = makeNewEmail('No leather in the office, starting tomorrow','HR just notified me that we have a new employee who starts tomorrow that is allergic to leather. To protect his health and productivity, all leather will be prohibited from the office. This includes bags, shoes, pants, belts, and any other leather accessories. Please leave your leather at home! Thanks for your support.', 'Bos@Gmail.Com', 'Nofar@Gmail.Com') 
+    var email = makeNewEmail('No leather in the offfice, starting tomorrow','HR just notified me that we have a new employee who starts tomorrow that is allergic to leather. To protect his health and productivity, all leather will be prohibited from the offfice. This includes bags, shoes, pants, belts, and any other leather accessories. Please leave your leather at home! Thanks for your support.', 'Bos@Gmail.Com', 'Nofar@Gmail.Com') 
     emails.push(email)
     var email = makeNewEmail('New office policy',' This has been a particularly bad flu season, and we’re concerned about how disease affects productivity. After much discussion and review of recent research, leadership has decided to issue an office policy against sneezing. If you need to sneeze, please go to the bathroom to avoid spreading germs and wash your hands after the sneeze. Do not sneeze at your desk! This new policy starts tomorrow.','Maya@Gmail.Com', 'Nofar@Gmail.Com')
     emails.push(email)
@@ -83,7 +83,7 @@ function findEmailById(emailId){
 
 //-----------------------------------------------------
 
-function saveDB(emails){
+function saveEmailsDB(emails){
     emailsDB = emails
 }
 //-----------------------------------------------------
@@ -92,5 +92,5 @@ export default {
     makeNewEmail,
     query,
     findEmailById,
-    saveDB
+    saveEmailsDB
 }

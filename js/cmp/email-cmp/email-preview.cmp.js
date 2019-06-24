@@ -57,7 +57,7 @@ export default {
         },
         toggleFavorite(emailId) {
             this.email.isFavorite = !this.email.isFavorite;
-            this.$emit('togle-favorite',emailId)
+            this.$emit('togleFavorite',emailId)
         },
         toggleEmailStatus(emailId){
             this.email.isRead = !this.email.isRead;

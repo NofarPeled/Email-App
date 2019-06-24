@@ -7,7 +7,7 @@ export default {
     <section class="emails-list-section">
         <ul class="emails-list clean-list">
             <email-preview 
-                @togle-favorite="toggleFavorite"
+                @toggleFavorite="toggleFavorite"
                 @toggle-read="toggleRead"
                 v-for="currEmail in emails" 
                 :email="currEmail" 
@@ -31,7 +31,7 @@ export default {
             this.$emit('toggle-read',emailId)
         },
         toggleFavorite(emailId){
-            this.$emit('toggle-favorite', emailId)
+            this.$emit('toggleFavorite', emailId)
         }
     },
     components: {

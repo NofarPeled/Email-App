@@ -1,5 +1,5 @@
 /* IMPORT OTHER PAGES CSS */
-
+@import url('./notes.css');
 @import url('./homepage.css');
 @import url('./previews-email.css');
 @import url('./details-email.css');
@@ -193,4 +193,10 @@ footer {
         display: none;
     }
 
+}
+
+@media(max-width: 649px){
+    .hide {
+        display: none;
+    }
 }

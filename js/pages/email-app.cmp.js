@@ -1,12 +1,12 @@
 'use strict'
 
 import emailsService, { EMAILS_KEY } from '../services/email-app-service.js'
-import emailList from '../cmp/email-list.cmp.js'
-import emailDetails from '../cmp/email-details.cmp.js'
-import newEmail from '../cmp/new-email.cmp.js'
+import emailList from '../cmp/email-cmp/email-list.cmp.js'
+import emailDetails from '../cmp/email-cmp/email-details.cmp.js'
+import newEmail from '../cmp/email-cmp/new-email.cmp.js'
 import storageService from '../services/storage-service.js'
-import filterEmail from '../cmp/filter-email.cmp.js'
-import emailCategories from '../cmp/email-categories.cmp.js'
+import filterEmail from '../cmp/email-cmp/filter-email.cmp.js'
+import emailCategories from '../cmp/email-cmp/email-categories.cmp.js'
 import filterService from '../services/email-filter-service.js'
 import eventBus from '../event-bus.js';
 
@@ -27,7 +27,7 @@ export default {
         @deleteEmail="deleteEmail"
         @replyEmail="replyEmail"
         @unreadEmail="unreadEmail"
-        @markAsFavorite="markAsFavorite">
+        @toggleFavorite="toggleFavorite">
     </email-details>
     <div class="email-categories-list-div flex">
     <email-categories 
@@ -77,7 +77,7 @@ export default {
                 .then(email => {
                     this.email = email;
                     email.isRead = true;
-                    this.saveEmails
+                    this.saveEmails()
                 })
         },
         closeEmail(email) {
@@ -88,7 +88,7 @@ export default {
             emailsService.findEmailById(emailId)
                 .then(email => {
                     this.emails.splice(email, 1);
-                    this.saveEmails
+                    this.saveEmails()
                     this.closeEmail('')
                 })
         },
@@ -96,8 +96,9 @@ export default {
 
             emailsService.findEmailById(emailId)
                 .then(email => {
+                    this.email = email
                     email.isRead = false;
-                    this.saveEmails
+                    this.saveEmails()
                     this.closeEmail('')
                 })
         },
@@ -107,7 +108,7 @@ export default {
             newEmail.isSent = true;
 
             this.emails.unshift(newEmail)
-            this.saveEmails
+            this.saveEmails()
 
             this.isNewEmailMode = false;
             this.filter = {txt: '', type: null};
@@ -119,7 +120,7 @@ export default {
             replyEmail.isRecived = true;
 
             this.emails.unshift(replyEmail)
-            this.saveEmails
+            this.saveEmails()
             this.closeEmail('')
 
         },
@@ -136,37 +137,48 @@ export default {
             this.isNewEmailMode = false;
             this.filter = {txt: '', type: null}
         },
-        markAsFavorite() {
+        toggleFavorite(emailId) {
+            emailsService.findEmailById(emailId)
+                .then(email => {
+                    this.email = email
+                    email.isFavorite = !email.isFavorite
+                    this.saveEmails()
+                })
 
-            this.email.isFavorite = !this.email.isFavorite
-            this.saveEmails
+            // this.email = email
+            // this.email.isFavorite = !this.email.isFavorite
+            // this.saveEmails
         },
         toggleRead(emailId){
             emailsService.findEmailById(emailId)
             .then(email => {
                 this.email = email;
-                this.email.isFavorite = !this.email.isFavorite
-                this.saveEmails
+                this.email.isRead = !this.email.isRead
+                this.saveEmails()
             })
             
         },
-        toggleFavorite(emailId){
-            emailsService.findEmailById(emailId)
-            .then(email => {
-                this.email = email;
-                this.email.isRead = !this.email.isRead
-                this.saveEmails
-            })
-        }
+        // toggleFavorite(emailId){
+        //     emailsService.findEmailById(emailId)
+        //         .then(email => {
+        //             this.email = email;
+        //             this.email.isFavorite = !this.email.isFavorite
+        //             this.saveEmails()
+        //         })
+        // },
+        saveEmails() {
+            storageService.save(EMAILS_KEY, this.emails);
+            emailsService.saveEmailsDB(this.emails)
+        },
     },
     computed: {
         filterEmails() {
             return filterService.filterEmails(this.emails, this.filter)
         },
-        saveEmails() {
-            storageService.save(EMAILS_KEY, this.emails);
-            emailsService.saveDB(this.emails)
-        },
+        // saveEmails() {
+        //     storageService.save(EMAILS_KEY, this.emails);
+        //     emailsService.saveEmailsDB(this.emails)
+        // },
         sortByNewerFirst() {
             if (!this.filter.created) return this.emails
             let sortedList = this.emails.sort((a, b) => {

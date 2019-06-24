@@ -13,11 +13,11 @@ export default {
             <div>
                 <img v-if="email.isFavorite" 
                     class="email-details-icons" 
-                    @click="markAsFavorite"
+                    @click="toggleFavorite(email.id)"
                     src="img/favorite.svg"/>
                 <img v-if="!email.isFavorite" 
                     class="email-details-icons" 
-                    @click="markAsFavorite"
+                    @click="toggleFavorite(email.id)"
                     src="img/not-favorite.svg"/>
                 <img class="email-details-icons" 
                     href="#email-reply"
@@ -72,8 +72,8 @@ export default {
         replyEmail(emailId) {
             this.$emit('replyEmail', emailId)
         },
-        markAsFavorite() {
-            this.$emit('markAsFavorite', '')
+        toggleFavorite(emailId) {
+            this.$emit('toggleFavorite', emailId)
         }
     },
     components: {

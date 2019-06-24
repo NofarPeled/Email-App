@@ -40,7 +40,6 @@
         padding:  1.5rem;      
         height: 100vh;
         position: fixed;
-        text-align: center;
     }
 
     .categories-list > * {

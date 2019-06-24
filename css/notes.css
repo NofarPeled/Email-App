@@ -1,0 +1,52 @@
+/* NOTES PREVIEW */
+
+.preview-note-li {
+    padding: 1.5rem;
+    background-color: #c1ecfc;
+    border-radius: 3px;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.preview-note-li img {
+    width: 25vw;
+}
+
+.note-div-icons > img{
+    height: 20px;
+    width: 20px;
+}
+
+/* NOTES LIST */
+
+.note-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.note-list-section{
+    padding-top: 2rem;
+    background-color:#192b43;
+}
+
+
+/* NOTES DETAILS */
+
+.note-details-section{
+    text-align: center;
+}
+
+.note-details-img{
+    max-width: 90vw;
+    max-height: 50vw;
+    margin: 0 auto;
+    display: block;
+}
+
+.details-icons img {
+    height: 30px;
+}
+
+.details-icons{
+    margin-top: 2rem;
+}
