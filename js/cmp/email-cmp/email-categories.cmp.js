@@ -10,7 +10,7 @@ export default {
         <li class="email-category" @click="filterByRecived">Recived ({{counter.isRecived}})</li>
         <li class="email-category" @click="filterByIsFavorite">Favorites ({{counter.isFavorite}})</li>
         <li class="email-category" @click="filterByIsRead">Read ({{counter.isRead}})</li>
-        <li class="email-category" @click="filterByUnread">UnRead ({{counter.isUnread}})</li>
+        <li class="email-category-last" @click="filterByUnread">UnRead ({{counter.isUnread}})</li>
     </ul>
     `,
     props: ['counter'],

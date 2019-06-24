@@ -18,24 +18,24 @@ export default {
         @closeNewMail="closeNewMail"
         @addNewEmail="addNewEmail">
     </new-email>
+    <email-details v-if="email" 
+    :email="email" 
+    @closeEmail="closeEmail"
+    @deleteEmail="deleteEmail"
+    @replyEmail="replyEmail"
+    @unreadEmail="unreadEmail"
+    @toggleFavorite="toggleFavorite">
+</email-details>
+<email-categories 
+    :counter="sortCategories"
+    @newEmailMode="newEmailMode"
+    @set-filter="setFilter"
+    v-if="!email &&!isNewEmailMode">
+   </email-categories>
+<div class="list-filter-div flex">
     <filter-email 
         @set-filter="setFilter"
         v-if="!email &&!isNewEmailMode"></filter-email>
-    <email-details v-if="email" 
-        :email="email" 
-        @closeEmail="closeEmail"
-        @deleteEmail="deleteEmail"
-        @replyEmail="replyEmail"
-        @unreadEmail="unreadEmail"
-        @toggleFavorite="toggleFavorite">
-    </email-details>
-    <div class="email-categories-list-div flex">
-    <email-categories 
-        :counter="sortCategories"
-        @newEmailMode="newEmailMode"
-        @set-filter="setFilter"
-        v-if="!email &&!isNewEmailMode">
-    </email-categories>
     <email-list v-if="!email &&!isNewEmailMode" 
         :emails="filterEmails" 
         class="email-list"
@@ -43,7 +43,7 @@ export default {
         @toggleFavorite="toggleFavorite"
         @readEmail="readEmail">
     </email-list>
-    </div>
+</div>
     </div>      
     `,
     data() {

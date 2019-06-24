@@ -14,6 +14,21 @@
     padding: 0.5rem;
 }
 
+.prev-email-subject{
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prev-email-create-date{
+    flex-grow: 1;
+}
+.list-filter-div {
+    overflow: auto;
+    flex-direction: column;
+}
+
 .email-filter input::placeholder{
     color:white;
     font-size: 1.5rem;
@@ -24,8 +39,6 @@
 @media (min-width: 650px) {
     .email-filter {
         position: relative;
-        left: 120px;
-        width: calc(100vw-120px);
     }
         
 }

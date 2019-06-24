@@ -11,12 +11,17 @@
 .prev-email-subject {
     font-weight: bold;
     margin-right: 1rem;
+    display: inline-block;
+    flex: 1;
+    width: 450px;
 }
 
 .prev-email-content {
     color: gray;
     font-size: 0.9rem;
     margin-right: 1rem;
+    flex-grow: 1;
+    width: 0;
 }
 
 .prev-email-create-date {
@@ -25,13 +30,16 @@
 }
 
 .img-email-status,.img-favorite{
+    padding: 0 12px;
     height: 1.1rem;
 }
 
-
 .prev-emails-sender{
     font-weight: bold;
-    margin-right: 1rem;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -50,6 +58,6 @@
 @media (min-width: 650px){
     .prev-email-container{
         flex-direction: row;
-        margin-left: 25vw;
+        width: 100%;
     }
 }

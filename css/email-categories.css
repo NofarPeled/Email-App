@@ -14,6 +14,10 @@
     margin-right: 1rem;
 }
 
+.categories-list > *:hover {
+    font-weight: bold;
+}
+
 .new-email-btn {
 	box-shadow:inset 0px -3px 7px 0px #29bbff;
 	background-color:#2dabf9;
@@ -31,6 +35,10 @@
     text-shadow:0px 1px 0px #566cb1;
 }
 
+.email-category-last{
+    margin-right: 0;
+}
+
 @media (min-width: 650px){
     .categories-list {
         flex-direction: column;
@@ -39,7 +47,6 @@
         margin-top: 0;
         padding:  1.5rem;      
         height: 100vh;
-        position: fixed;
     }
 
     .categories-list > * {
@@ -47,4 +54,12 @@
         margin-right: 0;
     }
 
+}
+
+@media (max-width: 649px){
+    .new-email-btn {
+        position: fixed;
+        bottom: 45px;
+        right: 20px;
+    }
 }

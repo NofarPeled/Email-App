@@ -42,6 +42,15 @@ a {
     text-decoration: none;
 }
 
+/* MAIN */
+
+.app {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 /* CLOSE FOR RENOVETIONS  */
 
 .close-for-renovetion {
@@ -60,7 +69,7 @@ a {
 
 .page-content{
     position: relative;
-    top: 15vh;
+    top: 14vh;
 }
 
 /* HEADER */
@@ -69,7 +78,6 @@ a {
     position: fixed;
     top: 0px;
     width:100vw;
-    height: 15vh;
     background-color: #dfdfe0;
     justify-items: baseline;
     z-index: 1;
@@ -89,7 +97,7 @@ a {
 .main-nav {
     flex-direction: column;
     position: absolute;
-    top: 15vh;
+    top: 14vh;
     right: 0;
     width: 250px;
     height: 100vh;
@@ -101,7 +109,7 @@ a {
     height: 2.5rem;
     cursor: pointer;
     justify-content: center;
-    flex-flow: 1;
+    flex-grow: 1;
 }
 
 .main-nav > a:hover {
@@ -177,11 +185,11 @@ footer {
         flex-direction: row;
         background: none;
         width: 60vw;
-        height: 15vh;
+        height: inherit;
     }
 
     .main-nav a {
-        height: 15vh;
+        height: inherit;
         flex-grow: 1;
         border-left: 1px solid #192b437e;
     }

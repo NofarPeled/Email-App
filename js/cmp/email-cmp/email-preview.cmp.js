@@ -3,8 +3,7 @@
 export default {
     template: ` 
     <li :class="email.id" class="preview-email-li">
-        <section class="prev-email-container container flex space-between">
-            <div>
+        <section class="prev-email-container container flex ">
                 <img class="img-favorite" 
                     src="img/not-favorite.svg"
                     v-if="!email.isFavorite"
@@ -28,12 +27,8 @@ export default {
                 <span :class="isReadEmail" class="prev-emails-sender">{{email.sender}}</span>
 
                 <span :class="isReadEmail" class="prev-email-subject">{{email.subject}}</span>
-            </div>
-            
-            <div>
                 <span class="prev-email-content">{{emailContentPrev}}</span>
                 <span class="prev-email-create-date">{{email.recivedAt}}</span>
-            </div>
         </section>
     </li>
     `,

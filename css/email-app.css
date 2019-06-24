@@ -1,13 +1,21 @@
 .email-app-cmp{
     margin-bottom: 10vh;
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+    flex-direction: column;
 }
 
-.email-categories-list-div{
+.email-categories {
     flex-direction: column;
 }
 
 @media (min-width: 650px){
-    .email-categories-list-div{
+    .email-categories {
+        flex-direction: row;
+    }
+
+    .email-app-cmp {
         flex-direction: row;
     }
 }

@@ -9,7 +9,7 @@ const myRouter = new VueRouter({routes: theRoutes})
 var app = new Vue({
     el: '#app',
     template:`
-    <section>
+    <section class="app">
         <app-header></app-header>
         <router-view class="page-content"></router-view>
         <footer>Coffe&Tea Rights ©</footer>
