@@ -2,7 +2,7 @@
 
 export default {
     template: ` 
-    <div>
+    <div class="homepage-div">
         <img class="homepage-img" src="img/homepage-wallpaper.jpg"/>
         <section class="link-img-section flex">
             <router-link class="link-img-container" to="/emails">

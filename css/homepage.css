@@ -1,6 +1,9 @@
 
 /* HOME PAGE CSS */
 
+.homepage-div {
+    overflow: scroll;
+}
 .homepage-img {
     width: 100vw;
     height: 50vh;
